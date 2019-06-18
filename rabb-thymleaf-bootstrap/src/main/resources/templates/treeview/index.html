@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="lazyrabbit">
+    <title>lazyrabbit's hole</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"></link>
+    <link rel="stylesheet" th:href="@{/webjars/patternfly-bootstrap-treeview/dist/bootstrap-treeview.min.css}"></link>
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/font-awesome.min.css}"></link>
+    <style>
+        .glyphicon {
+            margin-left: 12px;
+        }
+        .badge{
+            float: right;
+        }
+    </style>
+</head>
+<body>
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-12">
+            <button type="button" class="btn btn-primary" onclick="addNode();">
+                <i class="fa fa-plus"></i>&nbsp; 增加
+            </button>
+            <button type="button" class="btn btn-primary" onclick="editNode();">
+                <i class="fa fa-edit"></i>&nbsp; 修改
+            </button>
+            <button type="button" class="btn btn-primary" onclick="deleteNode();">
+                <i class="fa fa-times-circle"></i>&nbsp; 删除
+            </button>
+
+            <button type="button" class="btn btn-primary" onclick="refreshNode();">
+                <i class="fa fa-refresh"></i>&nbsp; 刷新
+            </button>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div id="treeview" class=""></div>
+        </div>
+    </div>
+</div>
+
+</body>
+<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script type="text/javascript"
+        th:src="@{/webjars/patternfly-bootstrap-treeview/dist/bootstrap-treeview.min.js}"></script>
+<script>
+    $(function () {
+        initTree();
+    });
+    var initData = [
+        {
+            id: 1,
+            text: '根节点',
+            nodes: [
+                {
+                    id: 2,
+                    text: '二级节点1',
+                    tags: ['在此节点测试']
+                },
+                {
+                    id: 2,
+                    text: '二级节点2',
+                    lazyLoad: true,
+                    tags: ['此节点为lazyload节点']
+                },
+                {
+                    id: 3,
+                    text: '对于lazyload且涉及到排序时：',
+                    tags: [''],
+                    nodes: [
+                        {
+                            id: 4,
+                            text: '1、新增一个根节点或者对根节点编辑时，刷新整个树'
+                        },
+                        {
+                            id: 5,
+                            text: '2、新增或编辑子节点时，刷新其父节点并展开'
+                        }
+                    ]
+                },
+                {
+                    id: 999,
+                    text: '这个插件支持到bootstrap3，bootstrap4使用时需要将Glyphicons换成Font Awesome图标',
+                    tags: ['备注']
+                }
+            ]
+
+        }
+    ];
+
+    function initTree() {
+        /*        $.get('getNodes', function (data) {
+                    $('#treeview').treeview({
+                        data: data,
+                        collapseIcon: 'fa fa-minus',
+                        expandIcon: 'fa fa-plus',
+                        levels: 1,
+                        loadingIcon: "fa fa-hourglass",
+                        lazyLoad: loadData
+                    });
+                });*/
+        $('#treeview').treeview({
+            data: initData,
+            collapseIcon: 'fa fa-minus',
+            expandIcon: 'fa fa-plus',
+            loadingIcon: "fa fa-hourglass",
+            lazyLoad: loadData,
+            levels: 3,
+            showTags: true,
+            showCheckbox: false,// 显示check框可改为true
+            hierarchicalCheck: true,
+            checkedIcon: 'fa fa-check-square-o',
+            uncheckedIcon: 'fa fa-square-o',
+            partiallyCheckedIcon: 'fa fa-minus-square-o'
+        });
+    }
+
+    function loadData(node, func) {
+        $.get('getNodes', {
+            id: node.id
+        }, function (data) {
+            func(data);
+        });
+    }
+
+    function addNode() {
+        var id = getSelectedId();
+        if (id > 0) {
+            var arr = $('#treeview').treeview('getSelected');
+            var newNode = {
+                text: '测试添加节点',
+                id: 999,
+                tags: ['111']
+            };
+            $("#treeview").treeview("addNode", [newNode, arr]);
+        }
+    }
+
+    function editNode() {
+        var id = getSelectedId();
+        if (id > 0) {
+            var node = $('#treeview').treeview('getSelected');
+            var editNode = {
+                text: '测试修改节点',
+                id: 998
+            };
+            $('#treeview').treeview('updateNode', [node, editNode, {
+                silent: true
+            }]);
+            /*            $('#treeview').treeview('expandNode', [editNode, {
+                            levels: 1,
+                            silent: true
+                        }]);*/
+        }
+    }
+
+    function deleteNode() {
+        var id = getSelectedId();
+        if (id > 0) {
+            var node = $('#treeview').treeview('getSelected');
+            $('#treeview').treeview('removeNode', [node, {
+                silent: true
+            }]);
+        }
+    }
+
+    function refreshNode() {
+        $('#treeview').treeview('remove');
+        initTree();
+    }
+
+    function getSelectedId() {
+        var arr = $('#treeview').treeview('getSelected');
+        if (arr.length > 0) {
+            /*            var parentNode = $('#treeview').treeview('getParents', arr[0])[0];*/
+            return arr[0].id;
+        } else {
+            alert("请选择节点！");
+            return -1;
+        }
+    }
+</script>
+</html>
