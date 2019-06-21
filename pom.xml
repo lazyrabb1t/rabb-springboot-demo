@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>xyz.lazyrabbit</groupId>
-    <artifactId>rabb-demo</artifactId>
+    <artifactId>rabb-springboot-demo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>rabb-demo</name>
     <description>Rabb's demo project for Spring Boot</description>
