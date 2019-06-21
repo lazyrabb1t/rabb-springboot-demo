@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="lazyrabbit">
+    <title>lazyrabbit's hole</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"></link>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrapvalidator/css/bootstrapValidator.min.css}"></link>
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/font-awesome.min.css}"></link>
+    <link rel="stylesheet" th:href="@{/css/customValidator.css}"></link>
+</head>
+<body>
+<div class="container mt-4">
+    <form class="form-horizontal">
+        <div class="row form-group">
+            <div class="col ">
+                <label for="userName" class=" form-control-label">昵称</label>
+            </div>
+            <div class="col-12">
+                <input type="text" id="userName" name="userName" placeholder="Name" class="form-control">
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col ">
+                <label for="userPassword" class=" form-control-label">密码</label>
+            </div>
+            <div class="col-12">
+                <input type="text" id="userPassword" name="userPassword" placeholder="password" class="form-control">
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col ">
+                <label for="userEmail" class=" form-control-label">邮箱</label>
+            </div>
+            <div class="col-12">
+                <input type="text" id="userEmail" name="userEmail" placeholder="email" class="form-control">
+            </div>
+        </div>
+        <button type="button" class="btn btn-primary" id="submitBtn">Sign in</button>
+    </form>
+</div>
+
+</body>
+<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script type="text/javascript"
+        th:src="@{/webjars/bootstrapvalidator/js/bootstrapValidator.min.js}"></script>
+<script>
+    $(function () {
+        $('#submitBtn').click(function (e) {
+            var bootstrapValidator = $("form").data('bootstrapValidator');
+            bootstrapValidator.validate();
+            if (bootstrapValidator.isValid()) {
+                // 提交表单
+            } else {
+            }
+        });
+        $("form").bootstrapValidator({
+            message: '输入的值无效',
+            feedbackIcons: {
+                valid: 'fa fa-check',
+                invalid: 'fa fa-times',
+                validating: 'fa fa-refresh'
+            },
+            fields: {
+                userName: {
+                    validators: {
+                        notEmpty: {
+                            message: '姓名为必填项'
+                        }
+                    }
+                },
+                userEmail: {
+                    validators: {
+                        notEmpty: {
+                            message: '邮箱地址为必填项'
+                        },
+                        emailAddress: {
+                            message: '邮箱地址不正确。'
+                        }
+                    }
+                },
+                userPassword: {
+                    validators: {
+                        notEmpty: {
+                            message: '密码为必填项'
+                        },
+                        regexp: {
+                            regexp: /^[a-zA-Z0-9_]+$/,
+                            message: '密码只能包含大写、小写、数字和下划线'
+                        }
+                    }
+                }
+            }
+        })
+    });
+</script>
+</html>
