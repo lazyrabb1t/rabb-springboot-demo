@@ -3,3 +3,7 @@ server:
 spring:
   thymeleaf:
     cache: false
+  messages:
+    basename: i18n/messages
+rabb:
+  test: 111

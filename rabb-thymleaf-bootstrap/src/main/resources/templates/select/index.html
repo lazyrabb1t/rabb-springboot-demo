@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="lazyrabbit">
+<title>lazyrabbit's hole</title>
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"></link>
+<link rel="stylesheet" th:href="@{/webjars/font-awesome/css/font-awesome.min.css}"></link>
+<link rel="stylesheet" th:href="@{/webjars/bootstrap-select/css/bootstrap-select.min.css}"></link>
+</head>
+<body>
+<div class="container mt-4" style="max-width: 666px;">
+    <div class="row form-group">
+        <div class="col-12">
+            <select class="selectpicker form-control" name="userId" id="userId" title="请选择..."
+                    data-hide-disabled="true" multiple>
+                <option th:each="user:${users}" th:value="${user.id}" th:text="${user.name}"></option>
+            </select>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap-select/js/bootstrap-select.min.js}"></script>
+<script>
+    $(function () {
+        $('.selectpicker').selectpicker({
+            liveSearch: true,
+            actionsBox: true
+        });
+    });
+</script>
+</html>

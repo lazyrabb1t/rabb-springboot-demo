@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import xyz.lazyrabbit.model.TableResult;
 import xyz.lazyrabbit.model.TreeNode;
 import xyz.lazyrabbit.model.User;
@@ -14,6 +15,21 @@ import java.util.UUID;
 
 @Controller
 public class ThymleafController {
+
+    @GetMapping("/")
+    public ModelAndView index() {
+
+        ModelAndView mv = new ModelAndView("thymleaf/index");
+        mv.addObject("user", new User(1, "messi", "messi@outlook.com", ""));
+        List<User> list = new ArrayList<>();
+        list.add(new User(1, "messi", "messi@outlook.com", "11111"));
+        list.add(new User(2, "benzema", "benzema@outlook.com", "22222"));
+        list.add(new User(3, "neymar", "neymar@outlook.com", "33333"));
+        list.add(new User(4, "suarez", "suarez@outlook.com", "44444"));
+        mv.addObject("users", list);
+        return mv;
+    }
+
     @GetMapping("/treeview")
     public String treeview() {
         return "treeview/index";
@@ -22,6 +38,18 @@ public class ThymleafController {
     @GetMapping("/validator")
     public String validator() {
         return "validator/index";
+    }
+
+    @GetMapping("/select")
+    public ModelAndView select() {
+        ModelAndView mv = new ModelAndView("select/index");
+        List<User> list = new ArrayList<>();
+        list.add(new User(1, "messi", "messi@outlook.com", "11111"));
+        list.add(new User(2, "benzema", "benzema@outlook.com", "22222"));
+        list.add(new User(3, "neymar", "neymar@outlook.com", "33333"));
+        list.add(new User(4, "suarez", "suarez@outlook.com", "44444"));
+        mv.addObject("users", list);
+        return mv;
     }
 
     @GetMapping("/table")

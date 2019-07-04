@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="lazyrabbit">
+<title>lazyrabbit's hole</title>
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"></link>
+<link rel="stylesheet" th:href="@{/webjars/font-awesome/css/font-awesome.min.css}"></link>
+</head>
+<body>
+<div class="container mt-4">
+    <h4>一、表达式</h4>
+    <hr/>
+    <div class="row">
+        <div class="col-md-12">
+            <h5>消息表达式 #{...}</h5>
+            <span th:text="#{rabbtest}"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h5>变量表达式 ${...}</h5>
+            <span th:text="${user.name}"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12" th:object="${user}">
+            <h5>选择表达式 *{...}</h5>
+            <span th:text="*{name}"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h5>url表达式 @{...}</h5>
+            <a th:href="@{https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#link-urls}" target="_blank">thymleaf官方文档</a>
+        </div>
+    </div>
+    <div th:replace="~{thymleaf/modal :: test}">
+    </div>
+    <h4 class="mt-4">二、设置属性</h4>
+    <hr/>
+    <div class="row">
+        <div class="col-md-12">
+            <form class="form-group" action="subscribe.html" method="post" th:attr="action=@{/subscribe},method='get'">
+                <label for="content"
+                       th:text="'使用th:attr可以同时设置多个属性，也可以使用th:text或data-th-value等标签单个设置熟悉，所有可用的th标签详见'">hhh</label>
+                <input type="text" class="form-control" id="content"
+                       data-th-value="'https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#setting-value-to-specific-attributes'">
+            </form>
+        </div>
+    </div>
+    <h4 class="mt-4">三、使用th:each进行遍历</h4>
+    <hr/>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table">
+                <tr>
+                    <th>#</th>
+                    <th>NAME</th>
+                    <th>EMAIL</th>
+                    <th>ADDRESS</th>
+                </tr>
+                <tr th:each="user:${users}" th:class="${userStat.odd}? 'table-active'">
+                    <td th:text="${user.id}"></td>
+                    <td th:text="${user.name}"></td>
+                    <td th:text="${user.email}"></td>
+                    <td th:text="${user.address}"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <h4 class="mt-4">四、使用th:if进行条件判断</h4>
+    <hr/>
+    <div class="row">
+        <div class="col-md-12">
+            <span th:if="${not #lists.isEmpty(users)}">users table is not empty</span>
+            <span th:if="${#lists.isEmpty(users)}">users table is empty</span>
+        </div>
+    </div>
+    <h4 class="mt-4">五、使用模板</h4>
+    <hr/>
+    <div th:replace="~{thymleaf/modal :: test}">
+    </div>
+    <h4 class="mt-4">六、使用th:block</h4>
+    <hr/>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table">
+                <tr>
+                    <th>#</th>
+                    <th>NAME</th>
+                    <th>EMAIL</th>
+                    <th>ADDRESS</th>
+                </tr>
+                <th:block th:each="user:${users}">
+                    <tr th:class="${userStat.odd}? 'table-primary'">
+                        <td th:text="${user.id}"></td>
+                        <td th:text="${user.name}"></td>
+                        <td th:text="${user.email}"></td>
+                        <td th:text="${user.address}"></td>
+                    </tr>
+                </th:block>
+            </table>
+        </div>
+    </div>
+    <h4 class="mt-4">七、使用注释</h4>
+    <hr/>
+    <div class="row">
+        <div class="col-md-12">
+            <!--/*/
+            <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+            /*/-->
+        </div>
+    </div>
+    <h4 class="mt-4">八、内联</h4>
+    <hr/>
+    <div class="row">
+        <div class="col-md-12">
+            <span> [[${user.name}]]</span>
+            <span> [(${user.name})]</span>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script>
+    $(function () {
+        $('.alert').alert('close');
+    });
+</script>
+</html>

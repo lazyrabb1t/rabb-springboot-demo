@@ -9,11 +9,70 @@
     <link rel="stylesheet" th:href="@{/webjars/patternfly-bootstrap-treeview/dist/bootstrap-treeview.min.css}"></link>
     <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/font-awesome.min.css}"></link>
     <style>
+        @import url(https://fonts.googleapis.com/css?family=Comfortaa:400,700,300);
+
+        `
+
+        svg {
+            width: 100px;
+            height: 100px;
+            margin: 20px;
+            display: inline-block;
+        }
+
+        h1 {
+            text-align: center;
+            color: #fff;
+            margin: 0 0 100px;
+            font-size: 34px;
+            font-weight: 100;
+            text-transform: uppercase;
+            background-color: #e43725;
+            padding: 20px 0;
+        }
+
+        h1 b {
+            font-weight: 700;
+        }
+
+        .made-with-love {
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 10px;
+            font-family: arial;
+            color: #fff;
+        }
+
+        .made-with-love i {
+            font-style: normal;
+            color: #F50057;
+            font-size: 14px;
+            position: relative;
+            top: 2px;
+        }
+
+        .made-with-love a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .made-with-love a:hover {
+            text-decoration: underline;
+        }
+
         .glyphicon {
             margin-left: 12px;
         }
-        .badge{
+
+        .badge {
             float: right;
+        }
+
+        svg {
+            width: 100px;
+            height: 100px;
+            margin: 20px;
+            display: inline-block;
         }
     </style>
 </head>
@@ -41,6 +100,21 @@
             <div id="treeview" class=""></div>
         </div>
     </div>
+    <svg version="1.1" id="L5" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+         y="0px" viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve">
+  <circle fill="#007bff" stroke="none" cx="6" cy="50" r="6" transform="translate(0 -14.1479)">
+    <animateTransform attributeName="transform" dur="1s" type="translate" values="0 15 ; 0 -15; 0 15"
+                      repeatCount="indefinite" begin="0.1"></animateTransform>
+  </circle>
+        <circle fill="#007bff" stroke="none" cx="30" cy="50" r="6" transform="translate(0 -6.56808)">
+    <animateTransform attributeName="transform" dur="1s" type="translate" values="0 10 ; 0 -10; 0 10"
+                      repeatCount="indefinite" begin="0.2"></animateTransform>
+  </circle>
+        <circle fill="#007bff" stroke="none" cx="54" cy="50" r="6" transform="translate(0 -1.28404)">
+    <animateTransform attributeName="transform" dur="1s" type="translate" values="0 5 ; 0 -5; 0 5"
+                      repeatCount="indefinite" begin="0.3"></animateTransform>
+  </circle>
+</svg>
 </div>
 
 </body>
