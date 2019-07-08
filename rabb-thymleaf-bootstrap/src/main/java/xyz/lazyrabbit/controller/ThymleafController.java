@@ -32,17 +32,17 @@ public class ThymleafController {
 
     @GetMapping("/treeview")
     public String treeview() {
-        return "treeview/index";
+        return "bootstrap-treeview/index";
     }
 
     @GetMapping("/validator")
     public String validator() {
-        return "validator/index";
+        return "bootstrap-validator/index";
     }
 
     @GetMapping("/select")
     public ModelAndView select() {
-        ModelAndView mv = new ModelAndView("select/index");
+        ModelAndView mv = new ModelAndView("bootstrap-select/index");
         List<User> list = new ArrayList<>();
         list.add(new User(1, "messi", "messi@outlook.com", "11111"));
         list.add(new User(2, "benzema", "benzema@outlook.com", "22222"));
@@ -54,7 +54,12 @@ public class ThymleafController {
 
     @GetMapping("/table")
     public String table() {
-        return "table/index";
+        return "bootstrap-table/index";
+    }
+
+    @GetMapping("/bootstrap")
+    public String bootstrap() {
+        return "bootstrap/index";
     }
 
     @GetMapping("/getNodes")
