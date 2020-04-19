@@ -16,6 +16,8 @@
     <packaging>pom</packaging>
     <modules>
         <module>rabb-thymleaf-bootstrap</module>
+        <module>rabb-springboot-security</module>
+        <module>rabb-springboot-mybatisplus</module>
     </modules>
     <properties>
         <java.version>1.8</java.version>

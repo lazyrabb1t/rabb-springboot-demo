@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="lazyrabbit">
+<title>lazyrabbit's hole</title>
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css}"></link>
+<link rel="stylesheet" th:href="@{/webjars/bootstrap-table/dist/bootstrap-table.min.css}"></link>
+<link rel="stylesheet" th:href="@{/webjars/font-awesome/css/font-awesome.min.css}"></link>
+</head>
+<body>
+<div class="container mt-4">
+    <div id="toolbar">
+        <button type="button" class="btn btn-primary" onclick="addNode();">
+            <i class="fa fa-plus"></i>&nbsp; 增加
+        </button>
+        <button type="button" class="btn btn-primary" onclick="editNode();">
+            <i class="fa fa-edit"></i>&nbsp; 修改
+        </button>
+        <button type="button" class="btn btn-primary" onclick="deleteNode();">
+            <i class="fa fa-times-circle"></i>&nbsp; 删除
+        </button>
+    </div>
+    <table id="table"></table>
+</div>
+</body>
+<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/4.4.1-1/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap-table/dist/bootstrap-table.min.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js}"></script>
+<script>
+$(function () {
+    var $table = $('#table');
+    $table.bootstrapTable({
+        url: 'getUsers',         //请求后台的URL（*）
+        method: 'get',                      //请求方式（*）
+        toolbar: '#toolbar',                //工具按钮用哪个容器
+        sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
+        pagination: true,
+        pageNumber: 1,                       //初始化加载第一页，默认第一页
+        pageSize: 5,                       //每页的记录行数（*）
+        pageList: [5, 10, 25, 50, 100],        //可供选择的每页的行数（*）
+        search: true,                       //是否显示表格搜索
+        showColumns: true,                  //是否显示所有的列
+        showRefresh: true,                  //是否显示刷新按钮
+        clickToSelect: true,                //是否启用点击选中行
+        /*            height: 500,*/                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+        uniqueId: "id",                     //每一行的唯一标识，一般为主键列
+        showToggle: true,                    //是否显示详细视图和列表视图的切换按钮
+        buttonsClass: "primary",
+        sortName: "id",
+        formatLoadingMessage: function () {
+        return "";
+        },
+        icons: {
+        paginationSwitchDown: 'fa-caret-square-down',
+        paginationSwitchUp: 'fa-caret-square-up',
+        refresh: 'fa-refresh',
+        toggleOff: 'fa-toggle-off',
+        toggleOn: 'fa-toggle-on',
+        columns: 'fa-th-list',
+        fullscreen: 'fa-arrows-alt',
+        detailOpen: 'fa-plus',
+        detailClose: 'fa-minus'
+        },
+        columns: [
+                {title: '表名', field: 'tableName', align: 'center', valign: 'middle', sortable: true},
+                {title: '作者', field: 'author', align: 'center', valign: 'middle', sortable: true},
+                {title: '是否覆盖', field: 'cover', align: 'center', valign: 'middle', sortable: true},
+                {title: '模块名称', field: 'moduleName', align: 'center', valign: 'middle', sortable: true},
+                {title: '至于哪个包下', field: 'pack', align: 'center', valign: 'middle', sortable: true},
+                {title: '前端代码生成的路径', field: 'path', align: 'center', valign: 'middle', sortable: true},
+                {title: '前端Api文件路径', field: 'apiPath', align: 'center', valign: 'middle', sortable: true},
+                {title: '表前缀', field: 'prefix', align: 'center', valign: 'middle', sortable: true},
+                {title: '接口名称', field: 'apiAlias', align: 'center', valign: 'middle', sortable: true},
+        ]
+    });
+});
+</script>
+</html>

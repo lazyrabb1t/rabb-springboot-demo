@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="lazyrabbit">
+<title>lazyrabbit's hole</title>
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"></link>
+<link rel="stylesheet" th:href="@{/css/signin.css}"></link>
+
+</head>
+<body>
+<form class="form-signin">
+    <div class="text-center mb-4">
+        <h1 class="h3 mb-3 font-weight-normal">Welcome</h1>
+        <p> basic security</p>
+    </div>
+
+    <div class="form-label-group">
+        <input type="text" id="inputUsername" name="username" class="form-control" placeholder="Email address" required autofocus>
+        <label for="inputUsername">Email address</label>
+    </div>
+
+    <div class="form-label-group">
+        <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
+        <label for="inputPassword">Password</label>
+    </div>
+    <div class="checkbox mb-3">
+        <label>
+            <input type="checkbox" value="remember-me"> Remember me
+        </label>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+</form>
+</body>
+<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/serialize-form .js}"></script>
+<script>
+    $(function () {
+        $('.form-signin').submit(function (e) {
+            e.preventDefault();
+            alert('123');
+            $.post('/basic/login', {
+                account: $('#inputUsername').val(),
+                password: $('#inputPassword').val()
+            }).done(function (msg) {
+                console.log(msg);
+                alert(msg);
+                location.href = '/basic/';
+            }).fail(function (xhr, status, error) {
+                alert(error);
+            });
+        });
+    });
+</script>
+</html>
