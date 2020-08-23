@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.lazyrabbit.mapper.AccountInfoTypeMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="xyz.lazyrabbit.entity.AccountInfoType">
+        <id column="id" property="id"/>
+        <result column="account_type" property="accountType"/>
+        <result column="memo" property="memo"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, account_type, memo
+    </sql>
+    <select id="findAll" resultType="xyz.lazyrabbit.entity.AccountInfoType">
+        select <include refid="Base_Column_List"/> from t_account_info_type;
+    </select>
+    <insert id="insert" parameterType="xyz.lazyrabbit.entity.AccountInfoType">
+        insert into t_account_info_type (account_type, memo) values (#{accountType},#{memo});
+    </insert>
+    <update id="updateById" parameterType="xyz.lazyrabbit.entity.AccountInfoType">
+        update t_account_info_type set account_type=#{accountType},memo=#{memo} where id=#{id}
+    </update>
+    <delete id="deleteById">
+        delete from t_account_info_type where id=#{id}
+    </delete>
+</mapper>
