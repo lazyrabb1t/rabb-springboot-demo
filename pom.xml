@@ -22,7 +22,7 @@
         <module>rabb-springboot-elasticsearch</module>
         <module>rabb-springboot-data-jpa</module>
         <module>rabb-springboot-mybatis</module>
-
+        <module>rabb-springboot-data-redis</module>
     </modules>
     <properties>
         <java.version>1.8</java.version>
