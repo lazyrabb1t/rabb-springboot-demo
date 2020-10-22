@@ -18,7 +18,7 @@
         <module>rabb-thymleaf-bootstrap</module>
         <module>rabb-springboot-security</module>
         <module>rabb-springboot-mybatisplus</module>
-        <module>rabb-springboot-shiro</module>
+        <module>rabb-springboot-shiro-jwt</module>
         <module>rabb-springboot-elasticsearch</module>
         <module>rabb-springboot-data-jpa</module>
         <module>rabb-springboot-mybatis</module>
