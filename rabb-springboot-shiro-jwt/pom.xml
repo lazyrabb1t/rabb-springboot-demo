@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>xyz.lazyrabbit</groupId>
-    <artifactId>rabb-springboot-shiro</artifactId>
+    <artifactId>rabb-springboot-shiro-jwt</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>rabb-springboot-shiro</name>
+    <name>rabb-springboot-shiro-jwt</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -19,10 +19,6 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
