@@ -1,4 +1,4 @@
-package xyz.lazyrabbit.shiro;
+package xyz.lazyrabbit;
 
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;

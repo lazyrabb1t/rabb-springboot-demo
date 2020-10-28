@@ -1,4 +1,4 @@
-package xyz.lazyrabbit.shiro.token;
+package xyz.lazyrabbit.token;
 
 import org.apache.shiro.authc.AuthenticationToken;
 

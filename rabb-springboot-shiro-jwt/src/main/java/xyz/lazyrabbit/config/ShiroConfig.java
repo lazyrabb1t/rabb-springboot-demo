@@ -8,8 +8,8 @@ import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreato
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import xyz.lazyrabbit.shiro.AjaxPermissionsAuthorizationFilter;
-import xyz.lazyrabbit.shiro.CustomRealm;
+import xyz.lazyrabbit.AjaxPermissionsAuthorizationFilter;
+import xyz.lazyrabbit.CustomRealm;
 
 import javax.servlet.Filter;
 import java.util.HashMap;
