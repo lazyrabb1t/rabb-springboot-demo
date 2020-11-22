@@ -9,9 +9,9 @@
     <relativePath/> <!-- lookup parent from repository -->
   </parent>
   <groupId>xyz.lazyrabbit</groupId>
-  <artifactId>rabb-springboot-kafka</artifactId>
+  <artifactId>rabb-springboot-mq-kafka</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>rabb-springboot-kafka</name>
+  <name>rabb-springboot-mq-kafka</name>
   <description>Demo project for Spring Boot</description>
 
   <properties>
