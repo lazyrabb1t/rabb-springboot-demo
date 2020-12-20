@@ -24,6 +24,7 @@
         <module>rabb-springboot-mybatis</module>
         <module>rabb-springboot-data-redis</module>
         <module>rabb-springboot-mq-kafka</module>
+        <module>rabb-springboot-mq-activemq</module>
     </modules>
     <properties>
         <java.version>1.8</java.version>
